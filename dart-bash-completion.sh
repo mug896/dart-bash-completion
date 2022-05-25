@@ -32,7 +32,7 @@ _dart()
     local CUR=${COMP_WORDS[COMP_CWORD]}
     local IFS=$' \t\n' WORDS
     local SED_COM='sed -En '\''/^Available (sub)?commands:/,${ s/^  ([^ ]+).*/\1/p }'\'
-    local SED_OPT='sed -En -e '\''s/... (--[^ <]+).*/\1/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
+    local SED_OPT='sed -En -e '\''s/^... (--[^ <]+).*/\1/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
 
     if [ "${CUR:0:1}" = "-" ]; then
         WORDS=$( _dart_get_opts )
