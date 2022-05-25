@@ -27,4 +27,4 @@ _dart()
     [ "${COMPREPLY: -1}" = "=" ] && compopt -o nospace
 }
 
-complete -o default -F _dart dart flutter
+complete -o default -F _dart dart
