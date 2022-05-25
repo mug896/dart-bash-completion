@@ -11,7 +11,7 @@ _dart()
         WORDS=$( eval "${COMP_LINE% *} --help" |& eval "$SED_OPT" )
     else
         if [ "${COMP_CWORD}" -eq 1 ]; then
-            WORDS=$( ${COMP_WORDS[0]} --help | eval "$SED_COM" )
+            WORDS=$( $COM --help | eval "$SED_COM" )
         else
             WORDS=$( eval "${COMP_LINE% *} --help" |& eval "$SED_COM" )
         fi
