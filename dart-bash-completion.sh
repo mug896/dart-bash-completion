@@ -8,12 +8,22 @@ _dart()
     local SED_OPT='sed -En -e '\''s/^... (--[^[:blank:]<]+).*/\1/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
 
     if [ "${CUR:0:1}" = "-" ]; then
-        WORDS=$( eval "${COMP_LINE% *} --help" |& eval "$SED_OPT" )
+        if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
+            WORDS=$( echo "$WORDS" | eval "$SED_OPT" )
+        else
+            echo; echo "$WORDS" | head -n1 >&2
+            return
+        fi
     else
         if [ "${COMP_CWORD}" -eq 1 ]; then
             WORDS=$( $COM --help | eval "$SED_COM" )
         else
-            WORDS=$( eval "${COMP_LINE% *} --help" |& eval "$SED_COM" )
+            if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
+                WORDS=$( echo "$WORDS" | eval "$SED_COM" )
+            else
+                echo; echo "$WORDS" | head -n1 >&2
+                return
+            fi
         fi
     fi
     [ -n "$WORDS" ] && COMPREPLY=( $(compgen -W "$WORDS" -- "$CUR") )
@@ -21,5 +31,4 @@ _dart()
 }
 
 complete -o default -F _dart dart
-
 
