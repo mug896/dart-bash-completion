@@ -12,3 +12,5 @@ bash$ dart [tab]
 analyze   create    doc       format    pub       test      
 compile   devtools  fix       migrate   run 
 ```
+
+> dart command execution a bit slow to completion ...
