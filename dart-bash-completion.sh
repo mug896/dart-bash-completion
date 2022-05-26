@@ -26,7 +26,7 @@ _dart()
             fi
         fi
     fi
-    [ -n "$WORDS" ] && COMPREPLY=( $(compgen -W "$WORDS" -- "$CUR") )
+    COMPREPLY=( $(compgen -W "$WORDS" -- "$CUR") )
     [ "${COMPREPLY: -1}" = "=" ] && compopt -o nospace
 }
 
