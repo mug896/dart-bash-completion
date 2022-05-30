@@ -4,7 +4,7 @@ _dart()
     local COM=${COMP_WORDS[0]}
     local CUR=${COMP_WORDS[COMP_CWORD]}
     local IFS=$' \t\n' WORDS
-    local SED_CMD='sed -En '\''/^Available (sub)?commands:/,${ s/^ +([^[:blank:]]+).*/\1/p }'\'
+    local SED_CMD='sed -En '\''/^Available (sub)?commands:/,${ s/^  ([^[:blank:]]+).*/\1/p }'\'
     local SED_OPT='sed -En -e '\''s/^ *((-\w), )?(--[^[:blank:]<]+).*/\2\n\3/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
 
     if [ "${CUR:0:1}" = "-" ]; then
