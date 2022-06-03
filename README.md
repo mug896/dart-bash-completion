@@ -1,7 +1,7 @@
 ## Dart Bash Completion
 
-Copy contents of dart-bash-completion.sh to ~/.bash_completion  
-open new terminal and try completion
+Copy contents of dart-bash-completion.sh to ~/.bash_completion.
+open new terminal and try auto completion.
 
 
 ```sh
