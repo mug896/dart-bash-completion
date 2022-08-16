@@ -14,7 +14,7 @@ _dart()
             return
         fi
     else
-        if [ "${COMP_CWORD}" -eq 1 ]; then
+        if (( COMP_CWORD == 1 )); then
             WORDS=$( $COM --help | eval "$SED_COM" )
         else
             if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
