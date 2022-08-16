@@ -6,7 +6,7 @@ _dart()
     local SED_CMD='sed -En '\''/^Available (sub)?commands:/,${ s/^  ([^[:blank:]]+).*/\1/p }'\'
     local SED_OPT='sed -En -e '\''s/^ *((-\w), )?(-[^[:blank:]<]+).*/\2\n\3/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
 
-    if [ "${CUR:0:1}" = "-" ]; then
+    if [[ ${CUR:0:1} == "-" ]]; then
         if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
             WORDS=$( echo "$WORDS" | eval "$SED_OPT" )
         else
