@@ -5,7 +5,8 @@ _dart()
     [[ ${COMP_LINE:COMP_POINT-1:1} = " " ]] && CUR=""
     local IFS=$' \t\n' WORDS
     local SED_CMD='sed -En '\''/^Available (sub)?commands:/,${ s/^  ([^[:blank:]]+).*/\1/p }'\'
-    local SED_OPT='sed -En -e '\''s/^ *((-\w), )?(-[^[:blank:]<]+).*/\2\n\3/; tX; b'\'' -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
+    local SED_OPT='sed -En -e '\''s/^ *((-\w), )?(-[^[:blank:]<]+).*/\2\n\3/; tX; b'\'' \
+                    -e '\'':X s/\[|\]//g; p; tY; b'\'' -e '\'':Y s/no-//p'\'
 
     if [[ $CUR == -* ]]; then
         if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
