@@ -14,9 +14,9 @@ _dart()
 @
     if [[ $CUR == -* ]]; then
         if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
-            WORDS=$( echo "$WORDS" | eval "$SED_OPT" )
+            WORDS=$( <<< $WORDS eval "$SED_OPT" )
         else
-            echo; echo "$WORDS" | head -n1 >&2
+            echo; <<< $WORDS head -n1 >&2
             return
         fi
     else
@@ -24,9 +24,9 @@ _dart()
             WORDS=$( $CMD --help | eval "$SED_CMD" )
         else
             if WORDS=$( eval "${COMP_LINE% *} --help" 2>&1 ); then
-                WORDS=$( echo "$WORDS" | eval "$SED_CMD" )
+                WORDS=$( <<< $WORDS eval "$SED_CMD" )
             else
-                echo; echo "$WORDS" | head -n1 >&2
+                echo; <<< $WORDS head -n1 >&2
                 return
             fi
         fi
